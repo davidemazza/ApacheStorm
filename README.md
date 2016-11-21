@@ -1,15 +1,16 @@
 # ApacheStorm
+<img src="http://static1.1.sqspcdn.com/static/f/621062/25513536/1412395455367/storm_logo.png?token=NslSNQIsrb2LkaJn0%2FYPoUHITfI%3D" width="500" heigth="500" /><br>
 
-Team
-Davide Mazza
-Federico Croce
-Riccardo Di Stefano
-Roberto Gaudenzi
-Sara Veterini
-Lorenzo Rutigliano
+# Team <br/>
+Davide Mazza<br/>
+Federico Croce<br/>
+Riccardo Di Stefano<br/>
+Roberto Gaudenzi<br/>
+Sara Veterini<br/>
+Lorenzo Rutigliano<br/>
 
 
-Apache Storm Tutorial Draft
+# Apache Storm Tutorial Draft
 
 We decided to split the group in three sub-groups:
 

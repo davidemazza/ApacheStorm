@@ -3,7 +3,7 @@
 
 # Team <br/>
 
-<table width="600" border="1">
+<table width="600">
   <tbody>
     <tr>
       <td><center>

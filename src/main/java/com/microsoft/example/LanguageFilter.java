@@ -10,8 +10,8 @@ import storm.trident.operation.BaseFilter;
 import storm.trident.tuple.TridentTuple;
 import twitter4j.Status;
 
-public class DateFilter extends BaseFilter{
-    private static final Logger LOG = LoggerFactory.getLogger(DateFilter.class);
+public class LanguageFilter extends BaseFilter{
+    private static final Logger LOG = LoggerFactory.getLogger(LanguageFilter.class);
 
 	public boolean isKeep(TridentTuple tuple){
 		try{
@@ -24,7 +24,12 @@ public class DateFilter extends BaseFilter{
 			return true;
 			//return formatter.parse(createdAt).before(max) && formatter.parse(createdAt).after(min);*/
 			Status status = (Status) tuple.get(0);
-			return status.getLang().equals("en") || status.getLang().equals("zh");
+			
+			return status.getLang().equals("en") || status.getLang().equals("ja")
+					|| status.getLang().equals("es") || status.getLang().equals("ar")
+					|| status.getLang().equals("el") || status.getLang().equals("fr")
+					|| status.getLang().equals("it") || status.getLang().equals("pt")
+					|| status.getLang().equals("tr") || status.getLang().equals("ms");
 		} catch(Exception e){
 			LOG.error("Error: " + e.getMessage());
 			return false;

@@ -1,15 +1,15 @@
 package com.microsoft.example;
 
+import java.util.Map;
+
+import backtype.storm.tuple.Values;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
-import backtype.storm.tuple.Values;
-
-import twitter4j.HashtagEntity;
 import twitter4j.Status;
 
 public class HashtagExtractor extends BaseFunction {
-
+	
   @Override
   public void execute(TridentTuple tuple, TridentCollector collector) {
     //Get the tweet

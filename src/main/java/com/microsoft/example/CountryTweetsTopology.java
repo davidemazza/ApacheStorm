@@ -1,6 +1,8 @@
 package com.microsoft.example;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -14,7 +16,7 @@ import storm.trident.operation.builtin.FirstN;
 import storm.trident.spout.IBatchSpout;
 import storm.trident.testing.MemoryMapState;
 
-public class TwitterTrendingTopology {
+public class CountryTweetsTopology {
   //Build the topology
   public static StormTopology buildTopology(IBatchSpout spout) throws IOException {
     final TridentTopology topology = new TridentTopology();
@@ -26,15 +28,16 @@ public class TwitterTrendingTopology {
     //5. each hashtag, and how many times it has occured
     //   is emitted.
   //.each(new Fields("tweet"), new DateFilter())
+    
     topology.newStream("spout", spout)
-    .each(new Fields("tweet"), new DateFilter())
+    .each(new Fields("tweet"), new LanguageFilter())
     .each(new Fields("tweet"), new HashtagExtractor(), new Fields("country"))
     //.groupBy(new Fields("hashtag"))
     .groupBy(new Fields("country"))
     .persistentAggregate(new MemoryMapState.Factory(), new Count(), new Fields("count"))
     .newValuesStream()
     .applyAssembly(new FirstN(10, "count"))
-    .each(new Fields("country", "count"), new Debug());
+    .each(new Fields("country", "count"), new OutputTweet());
     //Build and return the topology
     return topology.build();
   }

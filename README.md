@@ -16,7 +16,7 @@
     </tr>
     <tr>
     <td><center><img src="https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/14717107_10210786931333411_6622962866988658674_n.jpg?oh=fc18604fb3f873f7d4ccdbfe46100932&oe=58F32B5C" width="100" height="100" alt=""/></center></td>
-      <td><br /><font color="#000000" size="+2"><b><center> <a href="">Riccardo Di Stefano</a></center> </b></font><br /></td>
+      <td><br /><font color="#000000" size="+2"><b><center> <a href="https://it.linkedin.com/in/riccardo-di-stefano-439a11134">Riccardo Di Stefano</a></center> </b></font><br /></td>
     </tr>
     <tr>
       <td><center><img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAZEAAAAJDc3YjFkY2RlLTE2NWMtNDBjMy04YmRkLTVjNmQ1MmRmZmFhOA.jpg" width="100" height="100" alt=""/></center></td>

@@ -31,7 +31,7 @@ public class CountryTweetsTopology {
     
     topology.newStream("spout", spout)
     .each(new Fields("tweet"), new LanguageFilter())
-    .each(new Fields("tweet"), new HashtagExtractor(), new Fields("country"))
+    .each(new Fields("tweet"), new LanguageExtractor(), new Fields("country"))
     //.groupBy(new Fields("hashtag"))
     .groupBy(new Fields("country"))
     .persistentAggregate(new MemoryMapState.Factory(), new Count(), new Fields("count"))

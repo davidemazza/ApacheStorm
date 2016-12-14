@@ -8,7 +8,7 @@ import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
 import twitter4j.Status;
 
-public class HashtagExtractor extends BaseFunction {
+public class LanguageExtractor extends BaseFunction {
 	
   @Override
   public void execute(TridentTuple tuple, TridentCollector collector) {

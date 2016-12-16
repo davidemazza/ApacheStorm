@@ -20,24 +20,26 @@ public class CountryTweetsTopology {
   //Build the topology
   public static StormTopology buildTopology(IBatchSpout spout) throws IOException {
     final TridentTopology topology = new TridentTopology();
-    //Define the topology:
-    //1. spout reads tweets
-    //2. HashtagExtractor emits hashtags pulled from tweets
-    //3. hashtags are grouped
-    //4. a count of each hashtag is created
-    //5. each hashtag, and how many times it has occured
-    //   is emitted.
-  //.each(new Fields("tweet"), new DateFilter())
+    /*	
+     * Define the topology:
+     *	1. TwitterSpout samples tweets
+     *	2. LanguageFilter emits only tweets of some languages
+     *	3. LanguageExtractor emits the tweet's language
+     *	4. Tuples are grouped by their value, which is the language extracted 
+     *	   before
+     *	5. A count of each language emitted is created
+     *	6. Each language and its counter are emitted. 
+     */
     
     topology.newStream("spout", spout)
     .each(new Fields("tweet"), new LanguageFilter())
     .each(new Fields("tweet"), new LanguageExtractor(), new Fields("country"))
-    //.groupBy(new Fields("hashtag"))
     .groupBy(new Fields("country"))
     .persistentAggregate(new MemoryMapState.Factory(), new Count(), new Fields("count"))
     .newValuesStream()
     .applyAssembly(new FirstN(10, "count"))
     .each(new Fields("country", "count"), new OutputTweet());
+    
     //Build and return the topology
     return topology.build();
   }

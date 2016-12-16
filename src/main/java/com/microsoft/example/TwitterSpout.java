@@ -73,17 +73,17 @@ public class TwitterSpout implements IBatchSpout {
 
     //Add the listener to the stream
     twitterStream.addListener(listener);
-
+    twitterStream.sample();
     //Create a filter for the topics we want
     //to find trends for
-    final FilterQuery query = new FilterQuery();
+    //final FilterQuery query = new FilterQuery();
     /*String [] lang = new String[1];
     lang[0]= "it";*/
     //topics
     //query.language(lang);
-    query.track(new String[]{"music"});
+    /*query.track(new String[]{"general"});
     //Apply the filter
-    twitterStream.filter(query);
+    twitterStream.filter(query);*/
   }
 
   //Emit tweets from the queue

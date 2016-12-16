@@ -2,6 +2,7 @@ package com.microsoft.example;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,42 +31,34 @@ public class OutputTweet extends BaseFilter {
     
     private String codeToLang(String code){
     	if(code.equals("en"))
-    		return "English";
+    		return "🇬🇧";
     	else if (code.equals("es"))
-    		return "Spanish";
+    		return "🇪🇸";
     	else if (code.equals("ja"))
-    		return "Japanese";
+    		return "🇯🇵";
     	else if (code.equals("ar"))
-    		return "Arabic";
+    		return "🇦🇪";
     	else if (code.equals("el"))
-    		return "Greek";
+    		return "🇬🇷";
     	else if (code.equals("fr"))
-    		return "French";
-    	else if (code.equals("ja"))
-    		return "Japanese";
+    		return "🇫🇷";
     	else if (code.equals("it"))
-    		return "Italian";
+    		return "🇮🇹";
     	else if (code.equals("pt"))
-    		return "Portoguese";
+    		return "🇵🇹";
     	else if (code.equals("tr"))
-    		return "Turkish";
+    		return "🇹🇷";
     	else if (code.equals("ms"))
-    		return "Malaysian";
+    		return "🇲🇾";
     	return "";
     }
     
     private String printMap(){
-    	String res = "Tweets: "+counter+"\n";
-    	Collection<Long> values =map.values();
-    	List list = new ArrayList(values);
-    	Collections.sort(list, Collections.reverseOrder());
-    	
-    	for(long l : values){
-    		for (String i : map.keySet()){
-    			if(map.get(i).equals(l)){
-    				res = res + i+ ": "+ l+"\n";
-    			}
-    		}
+    	String res = "Results over "+counter+" tweets:\n";
+    	Object [] keys = map.keySet().toArray();
+    	Arrays.sort(keys);
+    	for (Object i : keys){
+    		res = res + codeToLang((String)i)+ ": "+ map.get(i)+"\n";	
     	}
     	System.out.println("^^^^^^^^^^^^"+res.length());
     	return res;
@@ -84,7 +77,7 @@ public class OutputTweet extends BaseFilter {
         	System.out.println("--------------"+map.toString());
         	
         	//Instantiate and initialize a new twitter status update
-        	String intro = "Apache Storm Tutorial: Twitter Most Popular Languages Now\n" ;
+        	String intro = "Twitter Most Used Languages Example:\n" ;
         	System.out.println("^^^^^^^^^"+intro.length());
             StatusUpdate statusUpdate = new StatusUpdate(intro + printMap());
 
@@ -99,4 +92,6 @@ public class OutputTweet extends BaseFilter {
         return true;
     }
 }
+
+
 

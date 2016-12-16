@@ -12,7 +12,8 @@
     </tr>
     <tr>
       <td><center><img src="http://www.teamgenerator.it/personale/immagini/federico.jpg" width="100" height="100" alt=""/></center></td>
-      <td><br /><font color="#000000" size="+2"><b><center> <a href="">Federico Croce</a></center> </b></font><br /></td>
+      <td><br /><font color="#000000" size="+2"><b><center> <a href="https://it.linkedin.com/in/federico-croce-921a19134/it
+">Federico Croce</a></center> </b></font><br /></td>
     </tr>
     <tr>
     <td><center><img src="https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/14717107_10210786931333411_6622962866988658674_n.jpg?oh=fc18604fb3f873f7d4ccdbfe46100932&oe=58F32B5C" width="100" height="100" alt=""/></center></td>
@@ -27,8 +28,9 @@
     <td><br /><font color="#000000" size="+2"><b><center> <a href="https://it.linkedin.com/in/sara-veterini-667684116">Sara Veterini</a></center> </b></font><br /></td>
     </tr>
     <tr>
-     <td><center><img src="http://www.teamgenerator.it/personale/immagini/lorenzo.jpg" width="100" height="100" alt=""/></center></td>
-      <td><br /><font color="#000000" size="+2"><b><center> <a href="">Lorenzo Rutigliano</a></center> </b></font><br /></td>
+     <td><center><img src="https://media.licdn.com/media/AAEAAQAAAAAAAAfDAAAAJGQyMDI3NGJlLTMzZGQtNDU2My1hNDZkLWY3NTRlMjgzMTdlNA.jpg" width="100" height="100" alt=""/></center></td>
+      <td><br /><font color="#000000" size="+2"><b><center> <a href="https://it.linkedin.com/in/lorenzo-rutigliano-00a007135/it
+">Lorenzo Rutigliano</a></center> </b></font><br /></td>
     </tr>
   </tbody>
 </table>
@@ -46,3 +48,7 @@ this sub-group is composed by Federico and Riccardo. Their goal is to provide a 
 
 - Advanced example:
 this sub-group is composed by Roberto and Sara. They will show how to integrate external services like Twitter on top of a Storm project. This will also include Trident which is a high-level abstraction for doing realtime computing on top of Storm.
+
+# Presentation
+
+<img src="http://freedoomind.altervista.org/blog/wp-content/uploads/2015/12/slidesharelogo.jpg" width="200" heigth="200" /> <br/> http://www.slideshare.net/DavideMazza6/apache-storm-tutorial

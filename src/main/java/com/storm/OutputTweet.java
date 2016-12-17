@@ -21,6 +21,8 @@ public class OutputTweet extends BaseFilter {
     private HashMap<String, Long> map;
     private int NUM_TWEETS = 100;
 	private String INTRO = "Twitter Most Used Languages\n" ;
+	// TODO replace with your name
+	private String AUTHOR = "Roberto"; 
 
     public OutputTweet() {
         name = "DEBUG: ";
@@ -77,7 +79,11 @@ public class OutputTweet extends BaseFilter {
             Twitter twitter = twitterFactory.getInstance();
         	
         	//Instantiate and initialize a new twitter status update
-            StatusUpdate statusUpdate = new StatusUpdate(INTRO + printMap());
+            String tweetText = INTRO + printMap();
+            System.out.println("Length: "+tweetText.length());
+            tweetText = tweetText + "Made by "+AUTHOR+".";
+            System.out.println("Length: "+tweetText.length());
+            StatusUpdate statusUpdate = new StatusUpdate(tweetText);
 
             //tweet or update status
             try{

@@ -79,9 +79,7 @@ public class OutputTweet extends BaseFilter {
             Twitter twitter = twitterFactory.getInstance();
         	
         	//Instantiate and initialize a new twitter status update
-            String tweetText = INTRO + printMap();
-            System.out.println("Length: "+tweetText.length());
-            tweetText = tweetText + "Made by "+AUTHOR+".";
+            String tweetText = INTRO + printMap() + "Made by "+AUTHOR+".";
             System.out.println("Length: "+tweetText.length());
             StatusUpdate statusUpdate = new StatusUpdate(tweetText);
 

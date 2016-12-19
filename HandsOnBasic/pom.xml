@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>TestStorm</groupId>
+  <artifactId>TestStorm</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>MVN_project</name>
+  <description>This is the maven project for the TestStorm project</description>
+  <build>
+  
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          
+        <dependency>
+			  <groupId>org.apache.storm</groupId>
+			  <artifactId>storm-core</artifactId>
+			  <version>1.0.2</version>
+			  <scope>provided</scope>
+		  </dependency></configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.apache.storm</groupId>
+  		<artifactId>storm-core</artifactId>
+  		<version>1.0.2</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+</project>

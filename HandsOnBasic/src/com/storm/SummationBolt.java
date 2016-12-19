@@ -1,3 +1,4 @@
+package com.storm;
 import java.util.Map;
 
 import org.apache.storm.task.OutputCollector;
@@ -8,7 +9,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
-public class CounterBolt implements IRichBolt{
+public class SummationBolt implements IRichBolt{
 	private OutputCollector collector;
 	private int result;
 	
@@ -20,8 +21,9 @@ public class CounterBolt implements IRichBolt{
 	@Override
 	public void execute(Tuple tuple) {
 		// TODO Auto-generated method stub
+		int number = tuple.getInteger(0);
 		String ID = tuple.getString(1);
-		result += 1;
+		result += number;
 		this.collector.emit(new Values(result, ID));
 		collector.ack(tuple);
 	}
@@ -36,7 +38,7 @@ public class CounterBolt implements IRichBolt{
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 		// TODO Auto-generated method stub
-		declarer.declare(new Fields("counter", "ID"));
+		declarer.declare(new Fields("sum", "ID"));
 	}
 
 	@Override
@@ -44,4 +46,5 @@ public class CounterBolt implements IRichBolt{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

@@ -25,89 +25,84 @@ import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class TwitterSpout implements IBatchSpout {
-  //Queue for tweets
-  private LinkedBlockingQueue<Status> queue;
-  //stream of tweets
-  private TwitterStream twitterStream;
+
+	// Queue for tweets
+	private LinkedBlockingQueue<Status> queue;
+	// stream of tweets
+	private TwitterStream twitterStream;
 
   
-  //open is ran when a spout instance is created
-  @Override
-  public void open(Map conf, TopologyContext context) {
-    //Open the stream
-    this.twitterStream = new TwitterStreamFactory().getInstance();
-    //Create the queue
-    this.queue = new LinkedBlockingQueue<Status>();
+	//open is ran when a spout instance is created
+	@Override
+	public void open(Map conf, TopologyContext context) {
+		// Open the stream
+	    this.twitterStream = new TwitterStreamFactory().getInstance();
+	    // Create the queue
+	    this.queue = new LinkedBlockingQueue<Status>();
+	
+	    //Create a listener for tweets (Status)
+	    final StatusListener listener = new StatusListener() {
 
-    //Create a listener for tweets (Status)
-    final StatusListener listener = new StatusListener() {
+	    	//If there's a tweet, add to the queue
+	    	@Override
+	    	public void onStatus(Status status) {
+	    		queue.offer(status);
+	    	}
 
-      //If there's a tweet, add to the queue
-      @Override
-      public void onStatus(Status status) {
-        queue.offer(status);
-      }
+			//Everything else is empty because we
+			//only care about the status (tweet)
+			@Override
+			public void onDeletionNotice(StatusDeletionNotice sdn) {}
+			
+			@Override
+			public void onTrackLimitationNotice(int i) {}
+			
+			@Override
+			public void onScrubGeo(long l, long l1) {}
+			
+			@Override
+			public void onException(Exception e) {}
+			
+			@Override
+			public void onStallWarning(StallWarning warning) {}
+		};
 
-      //Everything else is empty because we
-      //only care about the status (tweet)
-      @Override
-      public void onDeletionNotice(StatusDeletionNotice sdn) {
-      }
+		//Add the listener to the stream
+		twitterStream.addListener(listener);
+		//sample tweets
+		twitterStream.sample();
+	}
 
-      @Override
-      public void onTrackLimitationNotice(int i) {
-      }
+	//Emit tweets from the queue
+	@Override
+	public void emitBatch(long batchId, TridentCollector collector) {
+	    final Status status = queue.poll();
+	    if (status == null) {
+	      Utils.sleep(50);
+	    } else {
+	      collector.emit(new Values(status));
+	    }
+	}
 
-      @Override
-      public void onScrubGeo(long l, long l1) {
-      }
+	//No handling of acks
+	@Override
+	public void ack(long batchId) {}
 
-      @Override
-      public void onException(Exception e) {
-      }
+	//Clean up the things opened in open()
+	@Override
+	public void close() {
+		twitterStream.shutdown();
+	}
 
-      @Override
-      public void onStallWarning(StallWarning warning) {
-      }
-    };
+	//Get configuration
+	@Override
+	public Map getComponentConfiguration() {
+		return new Config();
+	}
 
-    //Add the listener to the stream
-    twitterStream.addListener(listener);
-    //sample tweets
-    twitterStream.sample();
-  }
-
-  //Emit tweets from the queue
-  @Override
-  public void emitBatch(long batchId, TridentCollector collector) {
-    final Status status = queue.poll();
-    if (status == null) {
-      Utils.sleep(50);
-    } else {
-      collector.emit(new Values(status));
-    }
-  }
-
-  //No handling of acks
-  @Override
-  public void ack(long batchId) {
-  }
-
-  //Clean up the things opened in open()
-  @Override
-  public void close() {
-    twitterStream.shutdown();
-  }
-
-  //Get configuration
-  @Override
-  public Map getComponentConfiguration() {
-    return new Config();
-  }
-
-  //Get the fields to be emitted
-  @Override
-  public Fields getOutputFields() {
-    return new Fields("tweet");
-  }
+	//Get the fields to be emitted
+	@Override
+	public Fields getOutputFields() {
+		return new Fields("tweet");
+	}
 }

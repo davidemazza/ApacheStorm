@@ -20,6 +20,11 @@ public class OutputTweet extends BaseFilter {
     private int counter;
     private HashMap<String, Long> map;
 
+    private int NUM_TWEETS = 100;
+	private String INTRO = "Twitter Most Used Languages\n" ;
+	// TODO replace with your name
+	private String AUTHOR = "Roberto"; 
+
     public OutputTweet() {
         name = "DEBUG: ";
         map=new HashMap();
@@ -58,9 +63,8 @@ public class OutputTweet extends BaseFilter {
     	Object [] keys = map.keySet().toArray();
     	Arrays.sort(keys);
     	for (Object i : keys){
-    		res = res + codeToLang((String)i)+ ": "+ map.get(i)+"\n";	
+    		res = res + codeToLang((String)i)+ " "+ map.get(i)+"\n";	
     	}
-    	System.out.println("^^^^^^^^^^^^"+res.length());
     	return res;
     }
     @Override
@@ -68,18 +72,17 @@ public class OutputTweet extends BaseFilter {
     	counter++;
         System.out.println(name + tuple.toString()+" "+counter);
         map.put(tuple.getString(0), tuple.getLong(1));
-        if (counter%100 == 0){
+        if (counter%NUM_TWEETS == 0){
         	//Instantiate a re-usable and thread-safe factory
             TwitterFactory twitterFactory = new TwitterFactory();
 
             //Instantiate a new Twitter instance
             Twitter twitter = twitterFactory.getInstance();
-        	System.out.println("--------------"+map.toString());
         	
         	//Instantiate and initialize a new twitter status update
-        	String intro = "Twitter Most Used Languages Example:\n" ;
-        	System.out.println("^^^^^^^^^"+intro.length());
-            StatusUpdate statusUpdate = new StatusUpdate(intro + printMap());
+            String tweetText = INTRO + printMap() + "Made by "+AUTHOR+".";
+            System.out.println("Length: "+tweetText.length());
+            StatusUpdate statusUpdate = new StatusUpdate(tweetText);
 
             //tweet or update status
             try{

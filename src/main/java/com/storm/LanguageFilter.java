@@ -15,16 +15,10 @@ public class LanguageFilter extends BaseFilter{
 
 	public boolean isKeep(TridentTuple tuple){
 		try{
-			/*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			Status status = (Status) tuple.get(0);
-			String createdAt = formatter.format(status.getCreatedAt());
-			LOG.debug(createdAt);
-			Date max = formatter.parse("2016-12-04");
-			Date min = formatter.parse("2016-11-04");
-			return true;
-			//return formatter.parse(createdAt).before(max) && formatter.parse(createdAt).after(min);*/
+			// Get the language value
 			Status status = (Status) tuple.get(0);
 			
+			// return true only if the language is one of the requested ones.
 			return status.getLang().equals("en") || status.getLang().equals("ja")
 					|| status.getLang().equals("es") || status.getLang().equals("ar")
 					|| status.getLang().equals("el") || status.getLang().equals("fr")

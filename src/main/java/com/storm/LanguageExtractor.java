@@ -10,16 +10,11 @@ import twitter4j.Status;
 
 public class LanguageExtractor extends BaseFunction {
 	
-  @Override
-  public void execute(TridentTuple tuple, TridentCollector collector) {
-    //Get the tweet
-    final Status status = (Status) tuple.get(0);
-    collector.emit(new Values(status.getLang()));
-    //Loop through the hashtags
-    /*for (HashtagEntity hashtag : status.getHashtagEntities()) {
-      //Emit each hashtag
-    	//if(hashtag.getText().toString().equals("iovotoNO") || hashtag.getText().toString().equals("iovotoSI"))
-    	collector.emit(new Values(hashtag.getText()));
-    }*/
-  }
+	@Override
+	public void execute(TridentTuple tuple, TridentCollector collector) {
+		// Get the tweet
+		final Status status = (Status) tuple.get(0);
+		// Extract the language and emit it as a value
+		collector.emit(new Values(status.getLang()));
+    }
 }
